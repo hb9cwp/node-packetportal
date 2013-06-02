@@ -112,8 +112,8 @@ MRPbuffer.prototype.injectedPacketsFiber= function() {
 
 MRPbuffer.prototype.timingOffset= function() {
  var t= this.b.readUInt32BE(58);
- if ((t & 0x8000) !=0)
-  return -(t &0x7FFF);
+ if ((t & 0x80000000) !=0)
+  return -(t &0x7FFFFFFF);
  else
   return t;
  //return this.b.readInt32BE(58);
@@ -136,13 +136,6 @@ MRPbuffer.prototype.S2Mdelay_s= function() {
  return this.S2Mdelay() *0.000000001;	// ns
 }
 
-MRPbuffer.prototype.bytesCopper= function() {
- return (this.b.readUInt16BE(72) <<32) +this.b.readUInt32BE(74);
-}
-MRPbuffer.prototype.bytesFiber= function() {
- return (this.b.readUInt16BE(78) <<32) +this.b.readUInt32BE(80);
-}
-
 MRPbuffer.prototype.status1588= function() {
  return this.b.readUInt16BE(70);
 }
@@ -153,3 +146,136 @@ MRPbuffer.prototype.status1588_Locked= function() {
  return (this.status1588() &0x0001) !=0;
 }
 
+MRPbuffer.prototype.bytesCopper= function() {
+ return (this.b.readUInt16BE(72) <<32) +this.b.readUInt32BE(74);
+}
+MRPbuffer.prototype.bytesFiber= function() {
+ return (this.b.readUInt16BE(78) <<32) +this.b.readUInt32BE(80);
+}
+
+MRPbuffer.prototype.packetsCopper= function() {
+ return this.b.readUInt32BE(84);
+ //return this.b.readUInt32BE(84) &0x07ffffff;
+}
+MRPbuffer.prototype.IPv4packetsCopper= function() {
+ return this.b.readUInt32BE(88);
+}
+MRPbuffer.prototype.TCPpacketsCopper= function() {
+ return this.b.readUInt32BE(92);
+}
+MRPbuffer.prototype.UDPpacketsCopper= function() {
+ return this.b.readUInt32BE(96);
+}
+MRPbuffer.prototype.SCTPpacketsCopper= function() {
+ return this.b.readUInt32BE(100);
+}
+MRPbuffer.prototype.ICMPpacketsCopper= function() {
+ return this.b.readUInt32BE(104);
+}
+MRPbuffer.prototype.IPv6packetsCopper= function() {
+ return this.b.readUInt32BE(108);
+}
+
+MRPbuffer.prototype.IPv4MulticastPacketsCopper= function() {
+ return this.b.readUInt32BE(112);
+}
+MRPbuffer.prototype.IPv4BroadcastPacketsCopper= function() {
+ return this.b.readUInt32BE(116);
+}
+MRPbuffer.prototype.IPv6MulticastPacketsCopper= function() {
+ return this.b.readUInt32BE(120);
+}
+MRPbuffer.prototype.IPv6BroadcastPacketsCopper= function() {
+ return this.b.readUInt32BE(124);
+}
+
+MRPbuffer.prototype.lt64packetsCopper= function() {
+ return this.b.readUInt32BE(128);
+}
+MRPbuffer.prototype.lt128packetsCopper= function() {
+ return this.b.readUInt32BE(132);
+}
+MRPbuffer.prototype.lt256packetsCopper= function() {
+ return this.b.readUInt32BE(136);
+}
+MRPbuffer.prototype.lt512packetsCopper= function() {
+ return this.b.readUInt32BE(140);
+}
+MRPbuffer.prototype.lt1024packetsCopper= function() {
+ return this.b.readUInt32BE(144);
+}
+MRPbuffer.prototype.le1500packetsCopper= function() {
+ return this.b.readUInt32BE(148);
+}
+MRPbuffer.prototype.gt1500packetsCopper= function() {
+ return this.b.readUInt32BE(152);
+}
+// Bytes 156..159 reserved
+MRPbuffer.prototype.misalignedPacketsCopper= function() {
+ return this.b.readUInt32BE(160);
+}
+
+// Bytes 164..211 reserved
+
+MRPbuffer.prototype.packetsFiber= function() {
+ return this.b.readUInt32BE(212);
+ //return this.b.readUInt32BE(84) &0x07ffffff;
+}
+MRPbuffer.prototype.IPv4packetsFiber= function() {
+ return this.b.readUInt32BE(216);
+}
+MRPbuffer.prototype.TCPpacketsFiber= function() {
+ return this.b.readUInt32BE(220);
+}
+MRPbuffer.prototype.UDPpacketsFiber= function() {
+ return this.b.readUInt32BE(224);
+}
+MRPbuffer.prototype.SCTPpacketsFiber= function() {
+ return this.b.readUInt32BE(228);
+}
+MRPbuffer.prototype.ICMPpacketsFiber= function() {
+ return this.b.readUInt32BE(232);
+}
+MRPbuffer.prototype.IPv6packetsFiber= function() {
+ return this.b.readUInt32BE(236);
+}
+
+MRPbuffer.prototype.IPv4MulticastPacketsFiber= function() {
+ return this.b.readUInt32BE(240);
+}
+MRPbuffer.prototype.IPv4BroadcastPacketsFiber= function() {
+ return this.b.readUInt32BE(244);
+}
+MRPbuffer.prototype.IPv6MulticastPacketsFiber= function() {
+ return this.b.readUInt32BE(248);
+}
+MRPbuffer.prototype.IPv6BroadcastPacketsFiber= function() {
+ return this.b.readUInt32BE(252);
+}
+
+MRPbuffer.prototype.lt64packetsFiber= function() {
+ return this.b.readUInt32BE(256);
+}
+MRPbuffer.prototype.lt128packetsFiber= function() {
+ return this.b.readUInt32BE(260);
+}
+MRPbuffer.prototype.lt256packetsFiber= function() {
+ return this.b.readUInt32BE(264);
+}
+MRPbuffer.prototype.lt512packetsFiber= function() {
+ return this.b.readUInt32BE(268);
+}
+MRPbuffer.prototype.lt1024packetsFiber= function() {
+ return this.b.readUInt32BE(272);
+}
+MRPbuffer.prototype.le1500packetsFiber= function() {
+ return this.b.readUInt32BE(276);
+}
+MRPbuffer.prototype.gt1500packetsFiber= function() {
+ return this.b.readUInt32BE(280);
+}
+// Bytes 284..287 reserved
+MRPbuffer.prototype.misalignedPacketsFiber= function() {
+ return this.b.readUInt32BE(288);
+}
+// Bytes 292..375 reserved

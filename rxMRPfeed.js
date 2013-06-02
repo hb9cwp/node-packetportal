@@ -33,6 +33,22 @@ var rx= dgram.createSocket("udp6", function (msg, tx) {
  console.log("S2Mdelay= ", mrp.S2Mdelay(), "   S2Mdelay_s= ", mrp.S2Mdelay_s());
  console.log("1588 Status Valid= ", mrp.status1588_Valid(), "   Locked= ", mrp.status1588_Locked());
  console.log("bytesCopper= ", mrp.bytesCopper(), "   bytesFiber= ", mrp.bytesFiber());
+ console.log("packetsCopper= ", mrp.packetsCopper());
+  console.log(" IPv4= ", mrp.IPv4packetsCopper(), "   TCP= ", mrp.TCPpacketsCopper(), "   UDP= ", mrp.UDPpacketsCopper(),
+              " SCTP= ", mrp.SCTPpacketsCopper(), "   ICMP= ", mrp.ICMPpacketsCopper(), "   IPv6= ", mrp.IPv6packetsCopper());
+  console.log(" IPv4mc= ", mrp.IPv4MulticastPacketsCopper(), "   IPv4bc= ", mrp.IPv4BroadcastPacketsCopper(), 
+              " IPv6mc= ", mrp.IPv6MulticastPacketsCopper(), "   IPv6bc= ", mrp.IPv6BroadcastPacketsCopper());
+  console.log(" <64= ", mrp.lt64packetsCopper(), "   <128= ", mrp.lt128packetsCopper(), "   <256= ", mrp.lt256packetsCopper(),
+              " <512= ", mrp.lt512packetsCopper(), "   <1024= ", mrp.lt1024packetsCopper(), "   <=1500= ", mrp.le1500packetsCopper(),
+              " >1500= ", mrp.gt1500packetsCopper(), "   misaligned= ", mrp.misalignedPacketsCopper());
+ console.log("packetsFiber= ", mrp.packetsFiber());
+  console.log(" IPv4= ", mrp.IPv4packetsFiber(), "   TCP= ", mrp.TCPpacketsFiber(), "   UDP= ", mrp.UDPpacketsFiber(),
+              " SCTP= ", mrp.SCTPpacketsFiber(), "   ICMP= ", mrp.ICMPpacketsFiber(), "   IPv6= ", mrp.IPv6packetsFiber());
+  console.log(" IPv4mc= ", mrp.IPv4MulticastPacketsFiber(), "   IPv4bc= ", mrp.IPv4BroadcastPacketsFiber(), 
+              " IPv6mc= ", mrp.IPv6MulticastPacketsFiber(), "   IPv6bc= ", mrp.IPv6BroadcastPacketsFiber());
+  console.log(" <64= ", mrp.lt64packetsFiber(), "   <128= ", mrp.lt128packetsFiber(), "   <256= ", mrp.lt256packetsFiber(),
+              " <512= ", mrp.lt512packetsFiber(), "   <1024= ", mrp.lt1024packetsFiber(), "   <=1500= ", mrp.le1500packetsFiber(),
+              " >1500= ", mrp.gt1500packetsFiber(), "   misaligned= ", mrp.misalignedPacketsFiber());
 });
 
 rx.on('error', function(err) {
