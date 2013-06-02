@@ -11,7 +11,7 @@ var n= 0;
 
 var rx= dgram.createSocket("udp6", function (msg, tx) {
  n++;
- console.log("----------------------------------------------------------------\n" + n + ":");
+ console.log("\n----------------------------------------------------------------\n" + n + ":");
  console.log('got message from ' +tx.address +':' +tx.port);
  console.log('dataLength= ' +tx.size);
  console.log(util.inspect(msg));
