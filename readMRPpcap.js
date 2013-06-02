@@ -7,10 +7,10 @@ var pcap = require("pcap-parser");
 var MRPbuffer = require("./MRPbuffer");
 
 
-var parser = pcap.parse("./mrp1SFProbe.pcap");
-//var parser = pcap.parse("./mrp1SFProbeEthernet.pcap");
-//var parser = pcap.parse("./mrp5SFProbe.pcap");
-//var parser = pcap.parse("./mrp5SFProbeEthernet.pcap");
+var parser = pcap.parse("./pcap/mrp1SFProbe.pcap");
+//var parser = pcap.parse("./pcap/mrp1SFProbeEthernet.pcap");
+//var parser = pcap.parse("./pcap/mrp5SFProbe.pcap");
+//var parser = pcap.parse("./pcap/mrp5SFProbeEthernet.pcap");
 var n= 0;
 
 
