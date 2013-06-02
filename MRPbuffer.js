@@ -278,4 +278,32 @@ MRPbuffer.prototype.gt1500packetsFiber= function() {
 MRPbuffer.prototype.misalignedPacketsFiber= function() {
  return this.b.readUInt32BE(288);
 }
+
 // Bytes 292..375 reserved
+
+MRPbuffer.prototype.filteredPacketsCopper= function(i) {
+ return this.b.readUInt32BE(376+(i&0x7)*4);
+}
+// Bytes 408..439 reserved
+MRPbuffer.prototype.filteredPacketsFiber= function(i) {
+ return this.b.readUInt32BE(440+(i&0x7)*4);
+}
+
+// Bytes 472..591 reserved
+
+MRPbuffer.prototype.filteredBytesCopper= function(i) {
+ if (this.b.readUInt8(592+(i&0x7)*6) &0x80)	// invalid, undercount due to jumbo frames
+  return -1;
+ else
+  return (this.b.readUInt16BE(592+(i&0x7)*6) <<32) +this.b.readUInt32BE(592+2+(i&0x7)*6);
+}
+// Bytes 640..687 reserved
+MRPbuffer.prototype.filteredBytesFiber= function(i) {
+ if (this.b.readUInt8(688+(i&0x7)*6) &0x80)     // invalid, undercount due to jumbo frames
+  return -1;
+ else
+  return (this.b.readUInt16BE(688+(i&0x7)*6) <<32) +this.b.readUInt32BE(688+2+(i&0x7)*6);
+}
+
+// Bytes 736..791 reserved
+
