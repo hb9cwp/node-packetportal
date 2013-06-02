@@ -49,22 +49,14 @@ var rx= dgram.createSocket("udp6", function (msg, tx) {
   console.log(" <64= ", mrp.lt64packetsFiber(), "   <128= ", mrp.lt128packetsFiber(), "   <256= ", mrp.lt256packetsFiber(),
               " <512= ", mrp.lt512packetsFiber(), "   <1024= ", mrp.lt1024packetsFiber(), "   <=1500= ", mrp.le1500packetsFiber(),
               " >1500= ", mrp.gt1500packetsFiber(), "   misaligned= ", mrp.misalignedPacketsFiber());
-  console.log("filteredPacketsCopper(0..7)= ", mrp.filteredPacketsCopper(0), "  ",  mrp.filteredPacketsCopper(1),
-              "  ", mrp.filteredPacketsCopper(2), "  ",  mrp.filteredPacketsCopper(3),
-              "  ", mrp.filteredPacketsCopper(4), "  ",  mrp.filteredPacketsCopper(5),
-              "  ", mrp.filteredPacketsCopper(6), "  ",  mrp.filteredPacketsCopper(7));
-  console.log("filteredPacketsFiber(0..7)= ", mrp.filteredPacketsFiber(0), "  ",  mrp.filteredPacketsFiber(1),
-              "  ", mrp.filteredPacketsFiber(2), "  ",  mrp.filteredPacketsFiber(3),
-              "  ", mrp.filteredPacketsFiber(4), "  ",  mrp.filteredPacketsFiber(5),
-              "  ", mrp.filteredPacketsFiber(6), "  ",  mrp.filteredPacketsFiber(7));   
-  console.log("filteredBytesCopper(0..7)= ", mrp.filteredBytesCopper(0), "  ",  mrp.filteredBytesCopper(1),
-              "  ", mrp.filteredBytesCopper(2), "  ",  mrp.filteredBytesCopper(3),
-              "  ", mrp.filteredBytesCopper(4), "  ",  mrp.filteredBytesCopper(5),
-              "  ", mrp.filteredBytesCopper(6), "  ",  mrp.filteredBytesCopper(7));
-  console.log("filteredBytesFiber(0..7)= ", mrp.filteredBytesFiber(0), "  ",  mrp.filteredBytesFiber(1),
-              "  ", mrp.filteredBytesFiber(2), "  ",  mrp.filteredBytesFiber(3),
-              "  ", mrp.filteredBytesFiber(4), "  ",  mrp.filteredBytesFiber(5),
-              "  ", mrp.filteredBytesFiber(6), "  ",  mrp.filteredBytesFiber(7));   
+ util.print("filteredPacketsCopper(0..7)= ");
+  for (var i= 0; i<8; i++) util.print("  ",  mrp.filteredPacketsCopper(i));
+ util.print("\nfilteredPacketsFiber(0..7)= ");
+  for (var i= 0; i<8; i++) util.print("  ",  mrp.filteredPacketsFiber(i));
+ util.print("\nfilteredBytesCopper(0..7)= ");
+  for (var i= 0; i<8; i++) util.print("  ",  mrp.filteredBytesCopper(i));
+ util.print("\nfilteredBytesFiber(0..7)= ");
+  for (var i= 0; i<8; i++) util.print("  ",  mrp.filteredBytesFiber(i));
 });
 
 rx.on('error', function(err) {

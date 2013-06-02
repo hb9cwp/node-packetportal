@@ -6,7 +6,7 @@ var MRPbuffer = module.exports = function(buf) {
  this.b= buf;
  //if ((buf[0] !==0xeb) || (buf[1] !==0xeb) || (buf.length <792) || (buf.length >1040)) {
  if ((this.preamble() != 0xebeb) || (buf.length <792) || (buf.length >1040) || (this.flagA_MRPversion() !=2)) {
-  console.log("not an MRP!");
+  console.log("Error: buffer is not an MRP!");
   this.b= '';
  }
 }
@@ -116,7 +116,6 @@ MRPbuffer.prototype.timingOffset= function() {
   return -(t &0x7FFFFFFF);
  else
   return t;
- //return this.b.readInt32BE(58);
 }
 MRPbuffer.prototype.timingOffset_s= function() {
  return this.timingOffset() *0.000000001;	// ns
@@ -219,7 +218,7 @@ MRPbuffer.prototype.misalignedPacketsCopper= function() {
 
 MRPbuffer.prototype.packetsFiber= function() {
  return this.b.readUInt32BE(212);
- //return this.b.readUInt32BE(84) &0x07ffffff;
+ //return this.b.readUInt32BE(212) &0x07ffffff;
 }
 MRPbuffer.prototype.IPv4packetsFiber= function() {
  return this.b.readUInt32BE(216);
