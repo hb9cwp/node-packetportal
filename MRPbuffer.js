@@ -110,6 +110,38 @@ MRPbuffer.prototype.injectedPacketsFiber= function() {
  return this.b.readUInt32BE(54);
 }
 
+MRPbuffer.prototype.timingOffset= function() {
+ var t= this.b.readUInt32BE(58);
+ if ((t & 0x8000) !=0)
+  return -(t &0x7FFF);
+ else
+  return t;
+ //return this.b.readInt32BE(58);
+}
+MRPbuffer.prototype.timingOffset_s= function() {
+ return this.timingOffset() *0.000000001;	// ns
+}
+
+MRPbuffer.prototype.M2Sdelay= function() {
+ return this.b.readUInt32BE(62);
+}
+MRPbuffer.prototype.M2Sdelay_s= function() {
+ return this.M2Sdelay() *0.000000001;	// ns
+}
+
+MRPbuffer.prototype.S2Mdelay= function() {
+ return this.b.readUInt32BE(66);
+}
+MRPbuffer.prototype.S2Mdelay_s= function() {
+ return this.S2Mdelay() *0.000000001;	// ns
+}
+
+MRPbuffer.prototype.bytesCopper= function() {
+ return (this.b.readUInt16BE(72) <<32) +this.b.readUInt32BE(74);
+}
+MRPbuffer.prototype.bytesFiber= function() {
+ return (this.b.readUInt16BE(78) <<32) +this.b.readUInt32BE(80);
+}
 
 MRPbuffer.prototype.status1588= function() {
  return this.b.readUInt16BE(70);
